@@ -74,9 +74,11 @@
             pc.addStream(stream);
             //如果是发起方则发送一个offer信令
             if(isCaller){
-                pc.createOffer(sendOfferFn, function (error) {
-                    console.log('Failure callback: ' + error);
-                });
+                socket.onopen=function () {
+                    pc.createOffer(sendOfferFn, function (error) {
+                        console.log('Failure callback: ' + error);
+                    });
+                };
             }
         }, function(error){
             //处理媒体流创建失败错误
